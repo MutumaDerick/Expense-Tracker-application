@@ -1,4 +1,4 @@
-const IncomeSchema= require("../models/IncomeModel")
+const IncomeSchema= require("../models/incomeModel")
 
 
 exports.addIncome = async (req, res) => {
@@ -38,3 +38,14 @@ exports.getIncomes = async (req, res) => {
     }
 }
 
+exports.deleteIncome = async (req, res) => {
+    const { id } = req.params;
+    console.log(params);
+    IncomeSchema.findByIdAndDelete(id)
+        .the((income) => {
+            res.status(200).json({message: 'Income Deleted'})
+        })
+        .catch((err) => {
+            res.status(500).json({message: 'Server Error'})
+        })
+}
